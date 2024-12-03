@@ -19,7 +19,7 @@ func init() {
 func New() *cli.App {
 	return &cli.App{
 		Name:            "bundle2jwks",
-		Usage:           "Convert a x509 CA bundle to go-jose JSONWebKeySet",
+		Usage:           "Convert an x509 CA bundle to go-jose JSONWebKeySet",
 		Version:         fmt.Sprintf("%s (%.8s)", version.GitVersion, version.GitCommit),
 		HideHelpCommand: true,
 		Args:            true,

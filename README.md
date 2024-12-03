@@ -1,4 +1,4 @@
-# bundle2jwks - Convert a x509 CA bundle to go-jose JSONWebKeySet
+# bundle2jwks - Convert an x509 CA bundle to go-jose JSONWebKeySet
 
 [distribution/registry](https://github.com/distribution/distribution) - the
 reference implimentation of an OCI registry - supports loading auth token
@@ -23,7 +23,7 @@ This is a minimal tool to convert a CA bundle to JWKS JSON, using libtrust-forma
 ## Help
 ```
 NAME:
-   bundle2jwks - Convert a x509 CA bundle to go-jose JSONWebKeySet
+   bundle2jwks - Convert an x509 CA bundle to go-jose JSONWebKeySet
 
 USAGE:
    bundle2jwks [global options] [CA-BUNDLE-FILE]
