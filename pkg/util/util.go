@@ -6,7 +6,6 @@ import (
 	"crypto/sha256"
 	"crypto/x509"
 	"encoding/base32"
-	"os"
 	"strings"
 
 	"github.com/go-jose/go-jose/v4"
@@ -14,7 +13,7 @@ import (
 )
 
 func GetKeySet(path string) (*jose.JSONWebKeySet, error) {
-	rootCerts, err := cert.CertsFromFile(os.Args[1])
+	rootCerts, err := cert.CertsFromFile(path)
 	if err != nil {
 		return nil, err
 	}
