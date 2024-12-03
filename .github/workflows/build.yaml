@@ -1,0 +1,37 @@
+name: Build
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+jobs:
+  build:
+    strategy:
+      matrix:
+        os:
+          - linux
+        arch:
+          - amd64
+          - arm64
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 'stable'
+      
+      - name: Test
+        run: go test -v
+        env:
+          CGO_ENABLED: "0"
+
+      - name: Build
+        run: go build -o bin/bundle2jwks-${{ matrix.os }}-${{ matrix.arch }} -ldflags \
+          "-X github.com/brandond/bundle2jwks/pkg/version.GitVersion=${{ github.ref_type == 'tag' && github.ref_name || 'dev' }} -X github.com/brandond/bundle2jwks/pkg/version.GitCommit=${{ github.sha }} -extldflags '-static -lm -ldl -lz -lpthread'"
+        env:
+          CGO_ENABLED: "0"
+          GOOS: ${{ matrix.os }}
+          GOARCH: ${{ matrix.arch }}
